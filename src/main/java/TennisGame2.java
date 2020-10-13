@@ -33,7 +33,7 @@ public class TennisGame2 implements TennisGame
             if (P1point==1 || P1point==2 || P1point==3)
                 P1res = scores[P1point];
             P2res = scores[P2point];
-            score = P1res + "-" + P2res;
+            score.concat(P1res).concat("-".concat(P2res));
         }
                     
         if (P2point > 0 && P1point==0)
@@ -41,7 +41,7 @@ public class TennisGame2 implements TennisGame
             if (P2point==1 || P2point ==2)
                 P2res = scores[P2point];          
             P1res = scores[P1point];
-            score = P1res + "-" + P2res;
+            score.concat(P1res).concat("-".concat(P2res));
         }
               
         if (P1point>P2point && P1point < 4)
