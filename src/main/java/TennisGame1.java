@@ -7,6 +7,7 @@ public class TennisGame1 implements TennisGame {
     private String player1Name;
     private String player2Name;
     private static final String[] scores = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
+    private static final String[] tiedScores = new String[]{"Love-All", "Fifteen-All", "Thirty-All", "Deuce"};
 
     public TennisGame1(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -14,7 +15,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
+        if (playerName.equals("player1"))
             m_score1 += 1;
         else
             m_score2 += 1;
@@ -25,22 +26,13 @@ public class TennisGame1 implements TennisGame {
         int tempScore=0;
         if (m_score1==m_score2)
         {
-            switch (m_score1)
+            if(m_score1 >= 0 && m_score1 < 3)
             {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
+            	return tiedScores(m_score1);
+            }else 
+            {
+            	return tiedScores(3);
+            }          
         }
         else if (m_score1>=deuce_value || m_score2>=deuce_value)
         {
@@ -68,6 +60,10 @@ public class TennisGame1 implements TennisGame {
     }
     private static String basicScore(Integer playerOnePoint, Integer playerTwoPoint) {
         return scores[playerOnePoint] + "-" + scores[playerTwoPoint];
+    }
+    
+    private static String tiedScores(Integer playerPoint) {
+        return tiedScores[playerPoint];
     }
     
 }
